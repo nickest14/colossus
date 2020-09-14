@@ -1,0 +1,68 @@
+version: "3.7"
+services:
+  cdn-admin:
+    restart: always
+    build: ./
+    image: asia.gcr.io/staging-211402/cdn-admin:latest
+    environment:
+      - TYPE=api
+    env_file:
+      - ./docker.env
+    networks:
+      - cdn-admin
+    ports:
+      - "3001:3000"
+  cdn-admin-worker:
+    restart: always
+    build: ./
+    image: asia.gcr.io/staging-211402/cdn-admin:latest
+    environment:
+      - TYPE=worker
+    env_file:
+      - ./docker.env
+    networks:
+      - cdn-admin
+  cdn-admin-beat:
+    restart: always
+    build: ./
+    image: asia.gcr.io/staging-211402/cdn-admin:latest
+    environment:
+      - TYPE=beat
+    env_file:
+      - ./docker.env
+    networks:
+      - cdn-admin
+    command: >
+      /bin/sh -c "./app task tasks:period_tasks"
+  db:
+    restart: always
+    image: postgres:11.5-alpine
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=cdn
+      - POSTGRES_PASSWORD=wtf
+      - POSTGRES_DB=cdn-admin
+    networks:
+      - cdn-admin
+    ports:
+      - "5433:5432"
+
+  redis:
+    restart: always
+    image: redis:5.0.9-buster
+    volumes:
+      - redis-data:/data
+    networks:
+      - cdn-admin
+    ports:
+      - "6380:6379"
+
+networks:
+  cdn-admin:
+    driver: bridge
+    
+volumes:
+  db-data:
+  redis-data:
+  go-build-cache:
