@@ -1,50 +1,50 @@
 version: "3.7"
 services:
-  cdn-admin:
+  colossus:
     restart: always
     build: ./
-    image: asia.gcr.io/staging-211402/cdn-admin:latest
+    image: nickest14/colossus:latest
     environment:
       - TYPE=api
     env_file:
       - ./docker.env
     networks:
-      - cdn-admin
+      - colossus
     ports:
       - "3001:3000"
-  cdn-admin-worker:
-    restart: always
-    build: ./
-    image: asia.gcr.io/staging-211402/cdn-admin:latest
-    environment:
-      - TYPE=worker
-    env_file:
-      - ./docker.env
-    networks:
-      - cdn-admin
-  cdn-admin-beat:
-    restart: always
-    build: ./
-    image: asia.gcr.io/staging-211402/cdn-admin:latest
-    environment:
-      - TYPE=beat
-    env_file:
-      - ./docker.env
-    networks:
-      - cdn-admin
-    command: >
-      /bin/sh -c "./app task tasks:period_tasks"
+  # colossus-worker:
+  #   restart: always
+  #   build: ./
+  #   image: nickest14/colossus:latest
+  #   environment:
+  #     - TYPE=worker
+  #   env_file:
+  #     - ./docker.env
+  #   networks:
+  #     - colossus
+  # colossus-beat:
+  #   restart: always
+  #   build: ./
+  #   image: nickest14/colossus:latest
+  #   environment:
+  #     - TYPE=beat
+  #   env_file:
+  #     - ./docker.env
+  #   networks:
+  #     - colossus
+  #   command: >
+  #     /bin/sh -c "./app task tasks:period_tasks"
   db:
     restart: always
     image: postgres:11.5-alpine
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=cdn
-      - POSTGRES_PASSWORD=wtf
-      - POSTGRES_DB=cdn-admin
+      - POSTGRES_USER=nick
+      - POSTGRES_PASSWORD=pass1234
+      - POSTGRES_DB=colossus
     networks:
-      - cdn-admin
+      - colossus
     ports:
       - "5433:5432"
 
@@ -54,12 +54,12 @@ services:
     volumes:
       - redis-data:/data
     networks:
-      - cdn-admin
+      - colossus
     ports:
       - "6380:6379"
 
 networks:
-  cdn-admin:
+  colossus:
     driver: bridge
     
 volumes:
