@@ -12,28 +12,28 @@ services:
       - colossus
     ports:
       - "3001:3000"
-  # colossus-worker:
-  #   restart: always
-  #   build: ./
-  #   image: nickest14/colossus:latest
-  #   environment:
-  #     - TYPE=worker
-  #   env_file:
-  #     - ./docker.env
-  #   networks:
-  #     - colossus
-  # colossus-beat:
-  #   restart: always
-  #   build: ./
-  #   image: nickest14/colossus:latest
-  #   environment:
-  #     - TYPE=beat
-  #   env_file:
-  #     - ./docker.env
-  #   networks:
-  #     - colossus
-  #   command: >
-  #     /bin/sh -c "./app task tasks:period_tasks"
+  colossus-worker:
+    restart: always
+    build: ./
+    image: nickest14/colossus:latest
+    environment:
+      - TYPE=worker
+    env_file:
+      - ./docker.env
+    networks:
+      - colossus
+  colossus-beat:
+    restart: always
+    build: ./
+    image: nickest14/colossus:latest
+    environment:
+      - TYPE=beat
+    env_file:
+      - ./docker.env
+    networks:
+      - colossus
+    command: >
+      /bin/sh -c "./app task tasks:period_tasks"
   db:
     restart: always
     image: postgres:11.5-alpine
@@ -47,7 +47,6 @@ services:
       - colossus
     ports:
       - "5433:5432"
-
   redis:
     restart: always
     image: redis:5.0.9-buster

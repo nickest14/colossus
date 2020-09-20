@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  db:
+    restart: always
+    image: postgres:11.5-alpine
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=nick
+      - POSTGRES_PASSWORD=pass1234
+      - POSTGRES_DB=colossus
+    networks:
+      - colossus
+    ports:
+      - "5433:5432"
+  redis:
+    restart: always
+    image: redis:5.0.9-buster
+    volumes:
+      - redis-data:/data
+    networks:
+      - colossus
+    ports:
+      - "6380:6379"
+
+networks:
+  colossus:
+    driver: bridge
+    
+volumes:
+  db-data:
+  redis-data:

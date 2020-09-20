@@ -1,10 +1,11 @@
 ---
 development:
   dialect: postgres
-  database: colossus_development
-  user: postgres
-  password: postgres
+  database: colossus
+  user: nick
+  password: pass1234
   host: 127.0.0.1
+  port: 5433  
   pool: 5
 
 test:
