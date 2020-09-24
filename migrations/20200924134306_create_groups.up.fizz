@@ -1,0 +1,7 @@
+create_table("groups") {
+	t.Column("id", "integer", {"primary": true})
+	t.Timestamps()
+  	t.Column("name", "string", {"size": 40, "null": true})
+}
+
+add_index("groups", "name", {"unique": true})
