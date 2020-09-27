@@ -3,10 +3,12 @@ module colossus
 go 1.14
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/go-redis/redis/v8 v8.2.2
 	github.com/gobuffalo/buffalo v0.16.15
 	github.com/gobuffalo/buffalo-pop/v2 v2.2.0
 	github.com/gobuffalo/envy v1.9.0
-	github.com/gobuffalo/mw-csrf v0.0.0-20190129204204-25460a055517
+	github.com/gobuffalo/mw-csrf v1.0.0
 	github.com/gobuffalo/mw-forcessl v0.0.0-20200131175327-94b2bd771862
 	github.com/gobuffalo/mw-i18n v0.0.0-20190129204410-552713a3ebb4
 	github.com/gobuffalo/mw-paramlogger v0.0.0-20190129202837-395da1998525
@@ -14,10 +16,14 @@ require (
 	github.com/gobuffalo/packr/v2 v2.8.0
 	github.com/gobuffalo/pop/v5 v5.2.4
 	github.com/gobuffalo/suite v2.8.2+incompatible
+	github.com/gobuffalo/suite/v3 v3.0.0
+	github.com/gobuffalo/validate/v3 v3.1.0
+	github.com/gobuffalo/x v0.0.0-20190224155809-6bb134105960
 	github.com/gofrs/uuid v3.2.0+incompatible
 	github.com/karrick/godirwalk v1.16.1 // indirect
 	github.com/markbates/goth v1.64.2
 	github.com/markbates/grift v1.5.0
+	github.com/pkg/errors v0.9.1
 	github.com/rogpeppe/go-internal v1.6.2 // indirect
 	github.com/sirupsen/logrus v1.6.0 // indirect
 	github.com/spf13/cobra v1.0.0 // indirect
@@ -27,4 +33,5 @@ require (
 	golang.org/x/sync v0.0.0-20200625203802-6e8e738ad208 // indirect
 	golang.org/x/sys v0.0.0-20200909081042-eff7692f9009 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
+	gopkg.in/yaml.v2 v2.3.0
 )

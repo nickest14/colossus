@@ -42,7 +42,6 @@ func App() *buffalo.App {
 			Env:         ENV,
 			SessionName: "_colossus_session",
 		})
-
 		// Automatically redirect to SSL
 		app.Use(forceSSL())
 
