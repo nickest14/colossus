@@ -1,0 +1,23 @@
+development:
+  host: {{envOr "REDIS_HOST" "localhost"}}
+  port: {{envOr "REDIS_PORT" "6380"}}
+  password: {{envOr "REDIS_PASSWORD" ""}}
+  db: {{envOr "REDIS_DB" "0"}}
+  max_retries: {{envOr "REDIS_MAX_RETRIES" "3"}}
+  pool: {{envOr "REDIS_POOL" "10"}} # default is 10 
+
+docker_development:
+  host: {{envOr "REDIS_HOST" "redis"}}
+  port: {{envOr "REDIS_PORT" "6379"}}
+  password: {{envOr "REDIS_PASSWORD" ""}}
+  db: {{envOr "REDIS_DB" "0"}}
+  max_retries: {{envOr "REDIS_MAX_RETRIES" "3"}}
+  pool: {{envOr "REDIS_POOL" "10"}} # default is 10
+
+staging:
+  host: {{envOr "REDIS_HOST" "redis"}}
+  port: {{envOr "REDIS_PORT" "6379"}}
+  password: {{envOr "REDIS_PASSWORD" ""}}
+  db: {{envOr "REDIS_DB" "0"}}
+  max_retries: {{envOr "REDIS_MAX_RETRIES" "3"}}
+  pool: {{envOr "REDIS_POOL" "10"}} # default is 10
