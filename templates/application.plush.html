@@ -10,8 +10,9 @@
     <link rel="icon" href="<%= assetPath("images/favicon.ico") %>">
   </head>
   <body>
-
-    <div class="container">
+    <%= partial("nav.plush.html") %>
+    <div
+     class="container">
       <%= partial("flash.html") %>
       <%= yield %>
     </div>

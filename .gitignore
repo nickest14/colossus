@@ -1,4 +1,3 @@
-vendor/
 **/*.log
 **/*.sqlite
 .idea/
@@ -25,3 +24,4 @@ dist/
 generated/
 .vendor/
 main
+__debug_bin
